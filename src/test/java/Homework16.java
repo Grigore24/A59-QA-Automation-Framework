@@ -10,26 +10,17 @@ import java.time.Duration;
 public class Homework16 extends BaseTest {
     @Test
     public void testRegistrationNavigation(){
-        // Pre-condition
-        // Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         // Steps
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-
-        WebElement registrationLink = driver.findElement(By.cssSelector("[href='registration']"));
-        registrationLink.click();
-
         String expectedRegistrationUrl = "https://qa.koel.app/registration";
+        navigateToPage();
+        findRegistrationLink();
         Assert.assertEquals(driver.getCurrentUrl(), expectedRegistrationUrl);
-        driver.quit();
 
     }
-
+    private void findRegistrationLink() {
+        WebElement registrationLink = driver.findElement(By.cssSelector("[href='registration']"));
+        registrationLink.click();
+    }
 
 }
