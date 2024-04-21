@@ -19,14 +19,14 @@ public class Homework19 extends BaseTest {
 
 
     public void clickPlaylist() {
-        WebElement playlist = driver.findElement(By.cssSelector("[class='playlist playlist']"));
+        WebElement playlist = waitUntilVisible(By.cssSelector("[class='playlist playlist']"));
         playlist.click();
     }
 
     public void deleteSelectedPlaylist() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement deletePlaylistBtn = driver
-                .findElement(By.cssSelector("[title='Delete this playlist']"));
+        WebElement deletePlaylistBtn = waitUntilVisible(By.cssSelector("[title='Delete this playlist']"));
+                //driver.findElement(By.cssSelector("[title='Delete this playlist']"));
         js.executeScript("arguments[0].click();", deletePlaylistBtn);
     }
 
@@ -41,7 +41,8 @@ public class Homework19 extends BaseTest {
     }
 
     public void showSuccessBanner() {
-        WebElement successBanner = driver.findElement(By.cssSelector("[class='success show']"));
+        WebElement successBanner = waitUntilVisible(By.cssSelector("[class='success show']"));
+                //driver.findElement(By.cssSelector("[class='success show']"));
         Assert.assertTrue(successBanner.isDisplayed());
     }
 }

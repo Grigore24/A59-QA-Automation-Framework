@@ -11,9 +11,9 @@ public class Homework18 extends BaseTest {
     public void playSong() {
         login("grigore.crepciuc@testpro.io", "te$t$tudent");
         pressOnPlayBtn();
-        WebElement pauseBtn = driver.findElement(By.cssSelector("[data-testid='pause-btn']"));
+        WebElement pauseBtn = waitUntilVisible(By.cssSelector("[data-testid='pause-btn']"));
         Assert.assertTrue(pauseBtn.isDisplayed());
-        WebElement equalizer = driver.findElement(By.cssSelector("[alt='Sound bars']"));
+        WebElement equalizer = waitUntilVisible(By.cssSelector("[alt='Sound bars']"));
         Assert.assertTrue(equalizer.isDisplayed());
     }
 

@@ -32,7 +32,8 @@ public class LoginTests extends BaseTest {
         clickLoginBtn();
         Thread.sleep(3000);
         // Expected result vs Actual
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+        WebElement avatarIcon = waitUntilVisible(By.cssSelector("img[class='avatar']"));
+                //driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
 

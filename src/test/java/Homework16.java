@@ -19,7 +19,8 @@ public class Homework16 extends BaseTest {
 
     }
     private void findRegistrationLink() {
-        WebElement registrationLink = driver.findElement(By.cssSelector("[href='registration']"));
+        //WebElement registrationLink = driver.findElement(By.cssSelector("[href='registration']"));
+        WebElement registrationLink = waitUntilVisible(By.cssSelector("[href='registration']"));
         registrationLink.click();
     }
 

@@ -26,9 +26,10 @@ public class Homework17 extends BaseTest {
         // create new playlist
         createNewPlaylist(playlistName);
         // assertions - success banner and song name in playlist
-        WebElement successBanner = driver.findElement(By.cssSelector(".success"));
+        //WebElement successBanner = driver.findElement(By.cssSelector(".success"));
+        WebElement successBanner = waitUntilClickable(By.cssSelector(".success"));
         Assert.assertTrue(successBanner.isDisplayed());
-        WebElement songName = driver.findElement(By.cssSelector("#playlistWrapper .song-item .title"));
+        WebElement songName = waitUntilVisible(By.cssSelector("#playlistWrapper .song-item .title"));
         String songText = songName.getText();
         Assert.assertEquals(text, songText);
 
@@ -47,7 +48,7 @@ public class Homework17 extends BaseTest {
     }
 
     private void clickAddToBtn() {
-        WebElement addToBtn = driver.findElement(By.cssSelector("[data-test='add-to-btn']"));
+        WebElement addToBtn = waitUntilClickable(By.cssSelector("[data-test='add-to-btn']"));
         addToBtn.click();
     }
 
@@ -57,12 +58,12 @@ public class Homework17 extends BaseTest {
     }
 
     private void clickViewAllBtn() {
-        WebElement viewAllBtn = driver.findElement(By.xpath("//button[@data-test='view-all-songs-btn']"));
+        WebElement viewAllBtn = waitUntilVisible(By.xpath("//button[@data-test='view-all-songs-btn']"));
         viewAllBtn.click();
     }
 
     private void findInput(String text) {
-        WebElement searchInput = driver.findElement(By.cssSelector("[type='search']"));
+        WebElement searchInput = waitUntilClickable(By.cssSelector("[type='search']"));
         searchInput.click();
         searchInput.clear();
         searchInput.sendKeys(text);

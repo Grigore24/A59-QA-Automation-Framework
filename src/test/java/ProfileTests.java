@@ -22,18 +22,21 @@ public class ProfileTests extends BaseTest {
         clickSaveBtn();
         // assert profile name is new
         driver.navigate().refresh();
-        WebElement profile = driver.findElement(By.cssSelector(".view-profile>span"));
+        WebElement profile = waitUntilVisible(By.cssSelector(".view-profile>span"));
+                //driver.findElement(By.cssSelector(".view-profile>span"));
         String newName = profile.getText();
         Assert.assertEquals(newName, name);
     }
 
     private void clickSaveBtn() {
-        WebElement saveBtn = driver.findElement(By.cssSelector(".btn-submit"));
+        WebElement saveBtn = waitUntilClickable(By.cssSelector(".btn-submit"));
+                //driver.findElement(By.cssSelector(".btn-submit"));
         saveBtn.click();
     }
 
     private void typeEmail() {
-        WebElement emailInput = driver.findElement(By.cssSelector("#inputProfileEmail"));
+        WebElement emailInput = waitUntilVisible(By.cssSelector("#inputProfileEmail"));
+                //driver.findElement(By.cssSelector("#inputProfileEmail"));
         emailInput.click();
         emailInput.clear();
         emailInput.sendKeys("grigore.crepciuc@testpro.io");
@@ -42,21 +45,24 @@ public class ProfileTests extends BaseTest {
 
     private void typeNewName(String name) {
         System.out.println(name);
-        WebElement profileName = driver.findElement(By.cssSelector("#inputProfileName"));
+        WebElement profileName = waitUntilVisible(By.cssSelector("#inputProfileName"));
+                //driver.findElement(By.cssSelector("#inputProfileName"));
         profileName.click();
         profileName.clear();
         profileName.sendKeys(name);
     }
 
     private void typeCurrentPassword() {
-        WebElement currentPasswordInput = driver.findElement(By.id("inputProfileCurrentPassword"));
+        WebElement currentPasswordInput = waitUntilClickable(By.id("inputProfileCurrentPassword"));
+                //driver.findElement(By.id("inputProfileCurrentPassword"));
         currentPasswordInput.click();
         currentPasswordInput.clear();
         currentPasswordInput.sendKeys("te$t$tudent");
     }
 
     private void clickOnAvatarIcon() {
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+        WebElement avatarIcon = waitUntilVisible(By.cssSelector("img[class='avatar']"));
+                //driver.findElement(By.cssSelector("img[class='avatar']"));
         avatarIcon.click();
     }
 }
