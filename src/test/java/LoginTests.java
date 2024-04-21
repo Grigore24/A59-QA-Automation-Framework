@@ -7,12 +7,11 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTest {
 
     @Test(dataProvider = "NegativeLoginTestData",dataProviderClass = TestDataProvider.class)
-    public void negativeLoginTests(String email, String password) throws InterruptedException {
+    public void negativeLoginTests(String email, String password) {
         String expectedUrl = "https://qa.koel.app/";
         provideEmail(email);
         providePassword(password);
         clickLoginBtn();
-        Thread.sleep(3000);
         Assert.assertEquals(driver.getCurrentUrl(), expectedUrl);
     }
     @Test
@@ -24,13 +23,12 @@ public class LoginTests extends BaseTest {
 
 
     @Test
-    public void loginValidEmailPassword() throws InterruptedException {
+    public void loginValidEmailPassword() {
         //Steps
 //Step 1: Open Browser
         provideEmail("grigore.crepciuc@testpro.io");
         providePassword("te$t$tudent");
         clickLoginBtn();
-        Thread.sleep(3000);
         // Expected result vs Actual
         WebElement avatarIcon = waitUntilVisible(By.cssSelector("img[class='avatar']"));
                 //driver.findElement(By.cssSelector("img[class='avatar']"));
@@ -38,25 +36,23 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void loginInValidEmailPassword() throws InterruptedException {
+    public void loginInValidEmailPassword() {
         //Steps
 //Step 1: Open Browser
         provideEmail("invalidgrigore.crepciuc@testpro.io");
         providePassword("te$t$tudent");
         clickLoginBtn();
-        Thread.sleep(3000);
 //Step 5: Expected result vs Actual
         String url = "https://qa.koel.app/";
         Assert.assertEquals(driver.getCurrentUrl(),url);
     }
     @Test
-    public void loginValidEmailInvalidPassword() throws InterruptedException {
+    public void loginValidEmailInvalidPassword() {
         //Steps
 //Step 1: Open Browser
         provideEmail("grigore.crepciuc@testpro.io");
         providePassword("invalidte$t$tudent");
         clickLoginBtn();
-        Thread.sleep(3000);
 //Step 5: Expected result vs Actual
         String url = "https://qa.koel.app/";
         Assert.assertEquals(driver.getCurrentUrl(),url);

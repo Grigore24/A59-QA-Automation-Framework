@@ -12,7 +12,7 @@ import java.util.List;
 public class Homework20 extends BaseTest {
 
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist()  {
         String playlist = generateRandomPlaylistName();
         login("grigore.crepciuc@testpro.io", "te$t$tudent");
         // CREATE PLAYLIST
