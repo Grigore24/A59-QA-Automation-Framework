@@ -8,19 +8,31 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 import java.util.Locale;
 
 public class BaseTest {
     public WebDriver driver;
-    public String url = "https://qa.koel.app/";
+   // public String url = "https://qa.koel.app/";
 
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
     @BeforeMethod
+    @Parameters({"BaseURL"})
+    public void lunchBrowser(String baseURL){
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+        //String url = baseURL;
+        navigateToPage(baseURL);
+    }
+    /*@BeforeMethod
     public void lunchBrowser(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -28,7 +40,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         navigateToPage();
-    }
+    }*/
     @AfterMethod(alwaysRun = true)
     public void closeBrowser(){
         driver.quit();
@@ -51,7 +63,10 @@ public class BaseTest {
         emailField.sendKeys(email);
     }
 
-    public void navigateToPage() {
+//    public void navigateToPage() {
+//        driver.get(url);
+//    }
+    public void navigateToPage(String url) {
         driver.get(url);
     }
     public void login(String email, String password){

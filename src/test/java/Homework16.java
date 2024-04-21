@@ -13,7 +13,7 @@ public class Homework16 extends BaseTest {
 
         // Steps
         String expectedRegistrationUrl = "https://qa.koel.app/registration";
-        navigateToPage();
+        navigateToPage("https://qa.koel.app/");
         findRegistrationLink();
         Assert.assertEquals(driver.getCurrentUrl(), expectedRegistrationUrl);
 
