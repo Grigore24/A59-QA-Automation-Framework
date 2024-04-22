@@ -35,8 +35,9 @@ public class Homework17 extends BaseTest {
 
     }
 
-    private void createNewPlaylist(String playlistName) {
-        WebElement newPlaylistNameInput = driver.findElement(By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']"));
+    public void createNewPlaylist(String playlistName) {
+        WebElement newPlaylistNameInput = waitUntilVisible(By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']"));
+                //driver.findElement(By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']"));
         newPlaylistNameInput.click();
         newPlaylistNameInput.clear();
         newPlaylistNameInput.sendKeys(playlistName);
@@ -47,22 +48,22 @@ public class Homework17 extends BaseTest {
         System.out.println(playlistName);
     }
 
-    private void clickAddToBtn() {
+    public void clickAddToBtn() {
         WebElement addToBtn = waitUntilClickable(By.cssSelector("[data-test='add-to-btn']"));
         addToBtn.click();
     }
 
-    private void firstSongInResults() {
+    public void firstSongInResults() {
         List<WebElement> songsInResults = driver.findElements(By.cssSelector(".search-results .song-item .title"));
         songsInResults.get(0).click();
     }
 
-    private void clickViewAllBtn() {
+    public void clickViewAllBtn() {
         WebElement viewAllBtn = waitUntilVisible(By.xpath("//button[@data-test='view-all-songs-btn']"));
         viewAllBtn.click();
     }
 
-    private void findInput(String text) {
+    public void findInput(String text) {
         WebElement searchInput = waitUntilClickable(By.cssSelector("[type='search']"));
         searchInput.click();
         searchInput.clear();
