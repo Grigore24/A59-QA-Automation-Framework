@@ -1,3 +1,4 @@
+import POM.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -12,8 +13,9 @@ import java.util.List;
 public class ActionsTests extends BaseTest {
     @Test
     public void playSongTest()  {
+        LoginPage loginPage = new LoginPage(driver);
         // hover over in clickPlayBtn
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         clickFooterPlayBtn();
         Assert.assertTrue(pauseBtnExists());
 
@@ -51,8 +53,9 @@ public class ActionsTests extends BaseTest {
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
-    public void playSongFromListTest() throws InterruptedException {
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+    public void playSongFromListTest()  {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         goToAllSongs();
         // right click on first song
         rightClickOnFirstSong();
@@ -102,7 +105,8 @@ public class ActionsTests extends BaseTest {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void countSongsInsidePlaylist(){
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         choosePlaylistByName("toy");
         displayAllSongs();
         Assert.assertTrue(getPlaylistDetails().contains(String.valueOf(countSongs())));

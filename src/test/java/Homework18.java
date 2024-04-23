@@ -1,3 +1,5 @@
+import POM.LoginPage;
+import POM.SongsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -9,19 +11,15 @@ import java.util.List;
 public class Homework18 extends BaseTest {
     @Test
     public void playSong() {
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
-        pressOnPlayBtn();
+        LoginPage loginPage = new LoginPage(driver);
+        SongsPage songsPage = new SongsPage(driver);
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        songsPage.pressOnPlayBtn();
         WebElement pauseBtn = waitUntilVisible(By.cssSelector("[data-testid='pause-btn']"));
         Assert.assertTrue(pauseBtn.isDisplayed());
         WebElement equalizer = waitUntilVisible(By.cssSelector("[alt='Sound bars']"));
         Assert.assertTrue(equalizer.isDisplayed());
     }
 
-    private void pressOnPlayBtn() {
-        WebElement buttonPlayOrResume = driver.findElement(By.cssSelector("[title='Play or resume']"));
-        new Actions(driver)
-                .moveToElement(buttonPlayOrResume)
-                .perform();
-        buttonPlayOrResume.click();
-    }
+
 }

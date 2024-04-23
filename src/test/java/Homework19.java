@@ -1,3 +1,5 @@
+import POM.LoginPage;
+import POM.PlaylistPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -8,13 +10,14 @@ import java.time.Duration;
 public class Homework19 extends BaseTest {
     @Test
     public void deletePlaylist() {
+        LoginPage loginPage = new LoginPage(driver);
+        PlaylistPage playlistPage = new PlaylistPage(driver);
 //      Added ChromeOptions argument below to fix websocket error
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
-        clickPlaylist();
-        deleteSelectedPlaylist();
-        waitCommand();
-        clickOkBtn();
-        showSuccessBanner();
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        playlistPage.clickPlaylist();
+        playlistPage.deleteSelectedPlaylist();
+        playlistPage.clickOkBtn();
+        playlistPage.showSuccessBanner();
     }
 
 

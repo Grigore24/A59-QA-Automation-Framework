@@ -17,9 +17,9 @@ import java.time.Duration;
 import java.util.Locale;
 
 public class BaseTest {
-    public WebDriver driver = null;
-    public WebDriverWait wait = null;
-    public Actions actions = null;
+    public static WebDriver driver = null;
+    public static WebDriverWait wait = null;
+    public static Actions actions = null;
    // public String url = "https://qa.koel.app/";
 
     @BeforeSuite
@@ -53,47 +53,19 @@ public class BaseTest {
         driver.quit();
     }
 
-    public void clickLoginBtn() {
-        WebElement loginBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-       // WebElement loginBtn = driver.findElement(By.cssSelector("button[type='submit']"));
-        loginBtn.click();
-    }
-
-    public void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type = 'password']")));
-       // WebElement passwordField = driver.findElement(By.cssSelector("input[type = 'password']"));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    public void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type = 'email']")));
-       // WebElement emailField = driver.findElement(By.cssSelector("input[type = 'email']"));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-
 //    public void navigateToPage() {
 //        driver.get(url);
 //    }
     public void navigateToPage(String url) {
         driver.get(url);
     }
-    public void login(String email, String password){
-        provideEmail(email);
-        providePassword(password);
-        clickLoginBtn();
-    }
+
     public String generateRandomName(){
         Faker faker = new Faker(new Locale("en-US"));
         String newName = faker.name().firstName();
         return newName;
     }
-    public String generateRandomPlaylistName(){
-        Faker faker = new Faker(new Locale("en-US"));
-        String newName = faker.address().country();
-        return newName;
-    }
+
     public WebElement waitUntilVisible(By element){
         return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.visibilityOfElementLocated(element));
     }

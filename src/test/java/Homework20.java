@@ -1,3 +1,5 @@
+import POM.LoginPage;
+import POM.PlaylistPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -13,8 +15,10 @@ public class Homework20 extends BaseTest {
 
     @Test
     public void deletePlaylist()  {
-        String playlist = generateRandomPlaylistName();
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        LoginPage loginPage = new LoginPage(driver);
+        PlaylistPage playlistPage = new PlaylistPage(driver);
+        String playlist = playlistPage.generateRandomPlaylistName();
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         // CREATE PLAYLIST
         // click Plus btn
         WebElement plusBtn = waitUntilVisible(By.cssSelector("[data-testid='sidebar-create-playlist-btn']"));

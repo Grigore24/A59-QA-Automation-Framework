@@ -1,3 +1,5 @@
+import POM.LoginPage;
+import POM.PlaylistPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -11,20 +13,22 @@ public class Homework17 extends BaseTest {
 
     @Test
     public void addSongToPlaylist() {
+        LoginPage loginPage = new LoginPage(driver);
+        PlaylistPage playlistPage = new PlaylistPage(driver);
         String text = "Dark Days";
-        String playlistName = generateRandomPlaylistName();
+        String playlistName = playlistPage.generateRandomPlaylistName();
         // login
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         // search for song
-        findInput(text);
+        playlistPage.findInput(text);
         // click results view all button
-        clickViewAllBtn();
+        playlistPage.clickViewAllBtn();
         // click first song
-        firstSongInResults();
+        playlistPage.firstSongInResults();
         // click Add To
-        clickAddToBtn();
+        playlistPage.clickAddToBtn();
         // create new playlist
-        createNewPlaylist(playlistName);
+        playlistPage.createNewPlaylist(playlistName);
         // assertions - success banner and song name in playlist
         //WebElement successBanner = driver.findElement(By.cssSelector(".success"));
         WebElement successBanner = waitUntilClickable(By.cssSelector(".success"));
@@ -35,38 +39,4 @@ public class Homework17 extends BaseTest {
 
     }
 
-    public void createNewPlaylist(String playlistName) {
-        WebElement newPlaylistNameInput = waitUntilVisible(By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']"));
-                //driver.findElement(By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']"));
-        newPlaylistNameInput.click();
-        newPlaylistNameInput.clear();
-        newPlaylistNameInput.sendKeys(playlistName);
-        // click Enter
-        new Actions(driver)
-                .keyDown(Keys.ENTER)
-                .perform();
-        System.out.println(playlistName);
-    }
-
-    public void clickAddToBtn() {
-        WebElement addToBtn = waitUntilClickable(By.cssSelector("[data-test='add-to-btn']"));
-        addToBtn.click();
-    }
-
-    public void firstSongInResults() {
-        List<WebElement> songsInResults = driver.findElements(By.cssSelector(".search-results .song-item .title"));
-        songsInResults.get(0).click();
-    }
-
-    public void clickViewAllBtn() {
-        WebElement viewAllBtn = waitUntilVisible(By.xpath("//button[@data-test='view-all-songs-btn']"));
-        viewAllBtn.click();
-    }
-
-    public void findInput(String text) {
-        WebElement searchInput = waitUntilClickable(By.cssSelector("[type='search']"));
-        searchInput.click();
-        searchInput.clear();
-        searchInput.sendKeys(text);
-    }
 }
