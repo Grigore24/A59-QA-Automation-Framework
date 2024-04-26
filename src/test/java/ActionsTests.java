@@ -84,14 +84,16 @@ public class ActionsTests extends BaseTest {
     @Test
     public void countSongsInsidePlaylist(){
         LoginPage loginPage = new LoginPage(driver);
+        SongsPage songsPage = new SongsPage(driver);
         loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
-        choosePlaylistByName("voy");
+        choosePlaylistByName("toy");
         displayAllSongs();
         Assert.assertTrue(getPlaylistDetails().contains(String.valueOf(countSongs())));
     }
     public void choosePlaylistByName(String playlistName){
-        wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.xpath("//a[contains(text(),'"+ playlistName +"')]"))).click();
+       waitUntilVisible(By.xpath("//a[contains(text(),'"+ playlistName +"')]")).click();
+//        wait.until(ExpectedConditions
+//                .visibilityOfElementLocated(By.xpath("//a[contains(text(),'"+ playlistName +"')]"))).click();
                                 //(By.cssSelector("[href='#!/playlist/93973']")))
     }
     public void displayAllSongs(){

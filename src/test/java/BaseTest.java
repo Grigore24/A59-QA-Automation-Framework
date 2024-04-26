@@ -60,17 +60,9 @@ public class BaseTest {
         driver.get(url);
     }
 
-    public String generateRandomName(){
-        Faker faker = new Faker(new Locale("en-US"));
-        String newName = faker.name().firstName();
-        return newName;
-    }
 
     public WebElement waitUntilVisible(By element){
         return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
-    public WebElement waitUntilClickable(By element){
-        return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(element));
-    }
 }

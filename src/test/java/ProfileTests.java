@@ -1,3 +1,4 @@
+import POM.BasePage;
 import POM.LoginPage;
 import POM.ProfilePage;
 import org.openqa.selenium.By;
@@ -11,6 +12,7 @@ public class ProfileTests extends BaseTest {
     public void changeProfileName()  {
         LoginPage loginPage = new LoginPage(driver);
         ProfilePage profilePage = new ProfilePage(driver);
+        BasePage basePage = new BasePage(driver);
         loginPage.login("grigore.crepciuc@testpro.io","te$t$tudent");
         String name = profilePage.generateRandomName();
         // open profile
@@ -24,11 +26,11 @@ public class ProfileTests extends BaseTest {
         // click save
         profilePage.clickSaveBtn();
         // assert profile name is new
-        driver.navigate().refresh();
-        WebElement profile = waitUntilVisible(By.cssSelector(".view-profile>span"));
+        basePage.refreshPage();
+       // WebElement profile = waitUntilVisible(By.cssSelector(".view-profile>span"));
                 //driver.findElement(By.cssSelector(".view-profile>span"));
-        String newName = profile.getText();
-        Assert.assertEquals(newName, name);
+        //String newName = profilePage.getProfileName();
+        Assert.assertEquals(profilePage.getProfileName(), name);
     }
 
 }

@@ -28,7 +28,7 @@ public class Homework17 extends BaseTest {
         //WebElement successBanner = waitUntilClickable(By.cssSelector(".success"));
         Assert.assertTrue(playlistPage.isSuccesBannerIsDisplayed());
        // WebElement songName = waitUntilVisible(By.cssSelector("#playlistWrapper .song-item .title"));
-         String  songText = playlistPage.getSongNameText();
+         //String  songText = playlistPage.getSongNameText();
         Assert.assertEquals(text, playlistPage.getSongNameText());
 
     }

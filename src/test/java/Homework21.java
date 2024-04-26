@@ -20,7 +20,7 @@ public class Homework21 extends BaseTest {
         loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         playlistPage.doubleClickChoosePlaylist();
         playlistPage.enterPlaylistName(playlistName);
-        String newName = playlistPage.getPlaylistName();
+        //String newName = playlistPage.getPlaylistName();
         Assert.assertEquals(playlistName, playlistPage.getPlaylistName(), "=== PlaylistNames expected to be equals ===");
     }
 

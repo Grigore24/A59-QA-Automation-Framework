@@ -17,6 +17,7 @@ public class ProfilePage extends BasePage {
     private By wrightNewName = By.cssSelector("#inputProfileName");
     private By typeCurrentEmail = By.cssSelector("#inputProfileEmail");
     private By pressSaveBtn = By.cssSelector(".btn-submit");
+    private By findGetProfileName = By.cssSelector(".view-profile>span");
 
     public String generateRandomName() {
         Faker faker = new Faker(new Locale("en-US"));
@@ -58,5 +59,10 @@ public class ProfilePage extends BasePage {
         WebElement saveBtn = waitUntilClickable(pressSaveBtn);
         //driver.findElement(By.cssSelector(".btn-submit"));
         saveBtn.click();
+    }
+    public String getProfileName(){
+        WebElement profile = waitUntilVisible(findGetProfileName);
+        String newName = profile.getText();
+        return newName;
     }
 }

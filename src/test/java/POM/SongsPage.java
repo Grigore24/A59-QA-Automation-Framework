@@ -53,4 +53,5 @@ public class SongsPage extends BasePage{
         //driver.findElement(By.cssSelector("[data-testid='sound-bar-play']")).isDisplayed();
     }
     /////////Methods ActionTests countSongsInsidePlaylist///////////
+
 }

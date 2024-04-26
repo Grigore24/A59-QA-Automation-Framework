@@ -32,7 +32,7 @@ public class Homework22 extends BaseTest {
         // refresh page
         basepage.refreshPage();
         // get all playlist elements
-        List<String> playlistNames = playlistPage.getPlaylistNames();
+       // List<String> playlistNames = playlistPage.getPlaylistNames();
         // assert playlist was deleted
         Assert.assertFalse(playlistPage.getPlaylistNames()
                 .contains(playlistPage.generateRandomPlaylistName()));
