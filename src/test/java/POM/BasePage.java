@@ -30,6 +30,10 @@ public class BasePage {
         return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions
                 .elementToBeClickable(element));
     }
+    public WebElement waitUntilPresense(By element){
+        return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions
+                .presenceOfElementLocated(element));
+    }
     public boolean IsSuccesBannerDisplayed(){
         return driver.findElement(toVerifyBanner).isDisplayed();
     }

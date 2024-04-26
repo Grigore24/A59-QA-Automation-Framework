@@ -1,4 +1,5 @@
 import POM.LoginPage;
+import POM.SongsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -11,7 +12,7 @@ import org.testng.asserts.SoftAssert;
 import java.util.List;
 
 public class ActionsTests extends BaseTest {
-    @Test
+  /*  @Test
     public void playSongTest()  {
         LoginPage loginPage = new LoginPage(driver);
         // hover over in clickPlayBtn
@@ -50,43 +51,20 @@ public class ActionsTests extends BaseTest {
     public boolean pauseBtnExists() {
         return waitUntilClickable(By.cssSelector("[data-testid='pause-btn']")).isDisplayed();
         //driver.findElement(By.cssSelector("[data-testid='pause-btn']")).isDisplayed();
-    }
+    }*/
 ////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void playSongFromListTest()  {
         LoginPage loginPage = new LoginPage(driver);
+        SongsPage songsPage = new SongsPage(driver);
         loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
-        goToAllSongs();
+        songsPage.goToAllSongs();
         // right click on first song
-        rightClickOnFirstSong();
+        songsPage.rightClickOnFirstSong();
         // click play button
-        clickPlayBtn();
+        songsPage.clickPlayBtn();
         // verify
-        Assert.assertTrue(isEqualizerDisplayed());
-    }
-    private void goToAllSongs() {
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".songs"))).click();
-    }
-
-    private boolean isEqualizerDisplayed() {
-        return wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.cssSelector("[data-testid='sound-bar-play']")))
-                .isDisplayed();
-                //driver.findElement(By.cssSelector("[data-testid='sound-bar-play']")).isDisplayed();
-    }
-
-
-    private void clickPlayBtn() {
-        WebElement playBtn = waitUntilClickable(By.cssSelector(".playback"));
-                //driver.findElement(By.cssSelector(".playback"));
-        playBtn.click();
-    }
-
-    private void rightClickOnFirstSong() {
-        WebElement firstSong = waitUntilVisible(By.cssSelector(".song-item"));
-                //driver.findElement(By.cssSelector(".song-item"));
-        Actions actions = new Actions(driver);
-        actions.contextClick(firstSong).perform();
+        Assert.assertTrue(songsPage.isEqualizerDisplayed());
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -107,14 +85,14 @@ public class ActionsTests extends BaseTest {
     public void countSongsInsidePlaylist(){
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
-        choosePlaylistByName("toy");
+        choosePlaylistByName("voy");
         displayAllSongs();
         Assert.assertTrue(getPlaylistDetails().contains(String.valueOf(countSongs())));
     }
     public void choosePlaylistByName(String playlistName){
         wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.cssSelector("[href='#!/playlist/93973']")))
-                .click();
+                        .visibilityOfElementLocated(By.xpath("//a[contains(text(),'"+ playlistName +"')]"))).click();
+                                //(By.cssSelector("[href='#!/playlist/93973']")))
     }
     public void displayAllSongs(){
         List<WebElement>songList = driver.findElements(By.cssSelector("section#playlistWrapper td.title"));

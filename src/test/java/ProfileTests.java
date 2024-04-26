@@ -13,7 +13,6 @@ public class ProfileTests extends BaseTest {
         ProfilePage profilePage = new ProfilePage(driver);
         loginPage.login("grigore.crepciuc@testpro.io","te$t$tudent");
         String name = profilePage.generateRandomName();
-       // Thread.sleep(1000);
         // open profile
         profilePage.clickOnAvatarIcon();
         // type password
@@ -22,7 +21,7 @@ public class ProfileTests extends BaseTest {
         profilePage.typeNewName(name);
         // type email
         profilePage.typeEmail();
-        // click saved
+        // click save
         profilePage.clickSaveBtn();
         // assert profile name is new
         driver.navigate().refresh();

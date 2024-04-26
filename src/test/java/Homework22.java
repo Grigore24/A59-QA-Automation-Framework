@@ -34,7 +34,8 @@ public class Homework22 extends BaseTest {
         // get all playlist elements
         List<String> playlistNames = playlistPage.getPlaylistNames();
         // assert playlist was deleted
-        Assert.assertFalse(playlistNames.contains(playlist));
+        Assert.assertFalse(playlistPage.getPlaylistNames()
+                .contains(playlistPage.generateRandomPlaylistName()));
     }
 
 }

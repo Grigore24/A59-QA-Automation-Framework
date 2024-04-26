@@ -6,7 +6,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -28,6 +27,8 @@ public class PlaylistPage extends BasePage{
     private By pressOnInput = By.cssSelector("[type='search']");
     private By pressClickAllViewBtn = By.xpath("//button[@data-test='view-all-songs-btn']");
     private By pressAddToBtn = By.cssSelector("[data-test='add-to-btn']");
+    private By succesBannerIsDisplayed = By.cssSelector(".success");
+    private By findGetSongNameTest = By.cssSelector("#playlistWrapper .song-item .title");
     ////////////Locators Homework19 DeletePlaylist with Javascript Executor/////////////
     private By pressOnPlaylist = By.cssSelector("[class='playlist playlist']");
     private By pressDeleteSelectedPlaylist = By.cssSelector("[title='Delete this playlist']");
@@ -111,6 +112,13 @@ public class PlaylistPage extends BasePage{
         WebElement addToBtn = waitUntilClickable(pressAddToBtn);
         addToBtn.click();
     }
+    public boolean isSuccesBannerIsDisplayed(){
+        return waitUntilClickable(succesBannerIsDisplayed).isDisplayed();
+    }
+    public String getSongNameText(){
+        return driver.findElement(findGetSongNameTest).getText();
+    }
+
     //////////////////////HOMEWORK19 DeletePlaylist with Javascript Executor/////////////////
     public void clickPlaylist() {
         WebElement playlist = waitUntilVisible(pressOnPlaylist);

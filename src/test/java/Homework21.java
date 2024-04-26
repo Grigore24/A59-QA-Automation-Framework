@@ -21,7 +21,7 @@ public class Homework21 extends BaseTest {
         playlistPage.doubleClickChoosePlaylist();
         playlistPage.enterPlaylistName(playlistName);
         String newName = playlistPage.getPlaylistName();
-        Assert.assertEquals(playlistName, newName, "=== PlaylistNames expected to be equals ===");
+        Assert.assertEquals(playlistName, playlistPage.getPlaylistName(), "=== PlaylistNames expected to be equals ===");
     }
 
 
