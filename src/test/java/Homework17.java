@@ -7,8 +7,8 @@ public class Homework17 extends BaseTest {
 
     @Test
     public void addSongToPlaylist() {
-        LoginPage loginPage = new LoginPage(driver);
-        PlaylistPage playlistPage = new PlaylistPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        PlaylistPage playlistPage = new PlaylistPage(getDriver());
         String text = "Dark Days";
         String playlistName = playlistPage.generateRandomPlaylistName();
         // login

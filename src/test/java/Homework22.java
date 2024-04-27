@@ -13,9 +13,9 @@ public class Homework22 extends BaseTest {
 
     @Test
     public void deletePlaylist() {
-        LoginPage loginPage = new LoginPage(driver);
-        PlaylistPage playlistPage = new PlaylistPage(driver);
-        BasePage basepage = new BasePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        PlaylistPage playlistPage = new PlaylistPage(getDriver());
+        BasePage basepage = new BasePage(getDriver());
         String playlist = playlistPage.generateRandomPlaylistName();
         loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         // CREATE PLAYLIST

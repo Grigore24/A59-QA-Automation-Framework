@@ -15,8 +15,8 @@ public class Homework21 extends BaseTest {
     public void renamePlaylist() {
         // double click
         String playlistName = "Sun And Wind";
-        LoginPage loginPage = new LoginPage(driver);
-        PlaylistPage playlistPage = new PlaylistPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        PlaylistPage playlistPage = new PlaylistPage(getDriver());
         loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         playlistPage.doubleClickChoosePlaylist();
         playlistPage.enterPlaylistName(playlistName);

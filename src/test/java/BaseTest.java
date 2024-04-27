@@ -19,7 +19,9 @@ import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class BaseTest {
@@ -27,22 +29,29 @@ public class BaseTest {
     public static WebDriverWait wait = null;
     public static Actions actions = null;
    // public String url = "https://qa.koel.app/";
-
-    @BeforeSuite
-    static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+    //for parallel execution
+   private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    public static WebDriver getDriver() {
+        return threadDriver.get();
     }
+
+//    @BeforeSuite
+//    static void setupClass() {
+//        WebDriverManager.chromedriver().setup();
+//    }
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void lunchBrowser(String baseURL)throws MalformedURLException {
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--remote-allow-origins=*");
 //        driver = new ChromeDriver(options);
-        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        driver.manage().window().maximize();
-        actions = new Actions(driver);
+        //driver = pickBrowser(System.getProperty("browser"));
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        getDriver().manage().window().maximize();
+        //actions = new Actions(driver);
         //String url = baseURL;
         navigateToPage(baseURL);
     }
@@ -63,6 +72,8 @@ public class BaseTest {
             case "grid-safari":
                 capabilities.setCapability("browserName", "safari");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "cloud":
+                return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
@@ -72,13 +83,44 @@ public class BaseTest {
                 return driver = new ChromeDriver(options);
         }
     }
+    public WebDriver lambdaTest() throws MalformedURLException {
+        String hubURL = "@hub.lambdatest.com/wd/hub";
+        String userName = "greytfly";
+        String accessKey = "7wXbxSZgFhBvIA71RRHCu2VmyU978XYiklFp1wlbK1ucJIB75H";
+        //Capabilities
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName","chrome");
+        capabilities.setCapability("browserVersion","123.0");
+
+       ChromeOptions browserOptions = new ChromeOptions();
+       browserOptions.setPlatformName("MacOS Monterey");
+       browserOptions.setBrowserVersion("123.0");
+        HashMap<String, Object> ltOptions = new HashMap<>();
+        ltOptions.put("username", userName);
+        ltOptions.put("accessKey", accessKey);
+        ltOptions.put("project", "Koel");
+        ltOptions.put("platformName","MacOS Monterey");
+        ltOptions.put("w3c", true);
+        ltOptions.put("plugin", "java-java");
+        //browserOptions.setCapability("LT:Options", ltOptions);
+        capabilities.setCapability("LT:Options", ltOptions);
+        return new RemoteWebDriver(new URL("https://" + userName + ":" + accessKey + hubURL), capabilities);
+    }
     @AfterMethod(alwaysRun = true)
-    public void closeBrowser(){
-        driver.quit();
+    public void tearDown(){
+        threadDriver.get().close();
+        threadDriver.remove();
     }
-    public void navigateToPage(String url) {
-        driver.get(url);
-    }
+//    @AfterMethod(alwaysRun = true)
+//    public void closeBrowser(){
+//        driver.quit();
+//    }
+//    public void navigateToPage(String url) {
+//        driver.get(url);
+//    }
+public void navigateToPage(String url) {
+    getDriver().get(url);
+}
     public WebElement waitUntilVisible(By element){
         return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.visibilityOfElementLocated(element));
     }

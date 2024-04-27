@@ -10,9 +10,9 @@ public class ProfileTests extends BaseTest {
 
     @Test(groups = "ProfileTests")
     public void changeProfileName()  {
-        LoginPage loginPage = new LoginPage(driver);
-        ProfilePage profilePage = new ProfilePage(driver);
-        BasePage basePage = new BasePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        ProfilePage profilePage = new ProfilePage(getDriver());
+        BasePage basePage = new BasePage(getDriver());
         loginPage.login("grigore.crepciuc@testpro.io","te$t$tudent");
         String name = profilePage.generateRandomName();
         // open profile

@@ -10,8 +10,8 @@ import java.time.Duration;
 public class Homework19 extends BaseTest {
     @Test
     public void deletePlaylist() {
-        LoginPage loginPage = new LoginPage(driver);
-        PlaylistPage playlistPage = new PlaylistPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        PlaylistPage playlistPage = new PlaylistPage(getDriver());
 //      Added ChromeOptions argument below to fix websocket error
         loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         playlistPage.clickPlaylist();

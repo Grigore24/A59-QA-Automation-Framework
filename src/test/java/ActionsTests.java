@@ -55,8 +55,8 @@ public class ActionsTests extends BaseTest {
 ////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void playSongFromListTest()  {
-        LoginPage loginPage = new LoginPage(driver);
-        SongsPage songsPage = new SongsPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        SongsPage songsPage = new SongsPage(getDriver());
         loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         songsPage.goToAllSongs();
         // right click on first song
@@ -83,10 +83,10 @@ public class ActionsTests extends BaseTest {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void countSongsInsidePlaylist(){
-        LoginPage loginPage = new LoginPage(driver);
-        SongsPage songsPage = new SongsPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        SongsPage songsPage = new SongsPage(getDriver());
         loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
-        choosePlaylistByName("toy");
+        choosePlaylistByName("ara");
         displayAllSongs();
         Assert.assertTrue(getPlaylistDetails().contains(String.valueOf(countSongs())));
     }

@@ -12,8 +12,8 @@ import java.util.List;
 public class Homework18 extends BaseTest {
     @Test
     public void playSong() {
-        LoginPage loginPage = new LoginPage(driver);
-        SongsPage songsPage = new SongsPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        SongsPage songsPage = new SongsPage(getDriver());
         loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         songsPage.pressOnPlayBtn();
         //songsPage.isPauseBtnDisplayed();
