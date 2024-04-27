@@ -49,7 +49,7 @@ public class BaseTest {
         threadDriver.set(pickBrowser(System.getProperty("browser")));
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
         getDriver().manage().window().maximize();
         //actions = new Actions(driver);
         //String url = baseURL;
@@ -122,7 +122,7 @@ public void navigateToPage(String url) {
     getDriver().get(url);
 }
     public WebElement waitUntilVisible(By element){
-        return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.visibilityOfElementLocated(element));
+        return new WebDriverWait(getDriver(), Duration.ofSeconds(4)).until(ExpectedConditions.visibilityOfElementLocated(element));
     }
       /*@BeforeMethod
     public void lunchBrowser(){

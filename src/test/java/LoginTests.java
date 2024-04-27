@@ -21,7 +21,7 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.clickLoginBtn();
         String url = "https://qa.koel.app/";
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
     }
 
 
@@ -65,6 +65,6 @@ public class LoginTests extends BaseTest {
         loginPage.clickLoginBtn();
 //Step 5: Expected result vs Actual
         String url = "https://qa.koel.app/";
-        Assert.assertEquals(driver.getCurrentUrl(),url);
+        Assert.assertEquals(getDriver().getCurrentUrl(),url);
     }
     }

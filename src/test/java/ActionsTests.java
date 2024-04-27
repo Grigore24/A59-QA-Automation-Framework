@@ -97,7 +97,7 @@ public class ActionsTests extends BaseTest {
                                 //(By.cssSelector("[href='#!/playlist/93973']")))
     }
     public void displayAllSongs(){
-        List<WebElement>songList = driver.findElements(By.cssSelector("section#playlistWrapper td.title"));
+        List<WebElement>songList = getDriver().findElements(By.cssSelector("section#playlistWrapper td.title"));
         //count and display songs names
         System.out.println("Number of songs in the playlist:"+ countSongs());
         for(WebElement e : songList){
@@ -105,7 +105,7 @@ public class ActionsTests extends BaseTest {
         }
     }
     public int countSongs(){
-        return driver.findElements(By.cssSelector("section#playlistWrapper td.title")).size();
+        return getDriver().findElements(By.cssSelector("section#playlistWrapper td.title")).size();
     }
     public String getPlaylistDetails(){
         return waitUntilVisible(By.cssSelector("span.meta.text-secondary span.meta")).getText();
