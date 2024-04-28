@@ -66,4 +66,16 @@ public class LoginStepDefinitions {
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.getAvatar());
     }
+
+    @And("I enter wrong password {string}")
+    public void iEnterWrongPassword(String arg0) {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.providePassword("wrongerte$t$tudent");
+    }
+
+    @Then("I am not logged in")
+    public void iAmNotLoggedIn() {
+        LoginPage loginPage = new LoginPage(driver);
+        Assert.assertTrue(loginPage.isSubmitLoginBtnDisplayed());
+    }
 }

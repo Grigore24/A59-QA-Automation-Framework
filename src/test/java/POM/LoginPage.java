@@ -46,5 +46,10 @@ public class LoginPage extends BasePage{
         WebElement registrationLink = waitUntilVisible(By.cssSelector("[href='registration']"));
         registrationLink.click();
     }
+    ///////////Cucumber////////////////////////
+    public boolean isSubmitLoginBtnDisplayed(){
+        return waitUntilVisible(pressLoginBtn).isDisplayed();
+        //driver.findElement(avatar).isDisplayed();
+    }
 
 }
