@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 import java.util.List;
 public class Homework18 extends BaseTest {
     @Test
-    public void playSong() {
+    public void playSong()  {
         login("grigore.crepciuc@testpro.io", "te$t$tudent");
         pressOnPlayBtn();
-        WebElement pauseBtn = driver.findElement(By.cssSelector("[data-testid='pause-btn']"));
+        WebElement pauseBtn = driver.findElement(By.cssSelector("[class='pause']"));
         Assert.assertTrue(pauseBtn.isDisplayed());
         WebElement equalizer = driver.findElement(By.cssSelector("[alt='Sound bars']"));
         Assert.assertTrue(equalizer.isDisplayed());
