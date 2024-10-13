@@ -9,7 +9,7 @@ import java.util.List;
 public class Homework18 extends BaseTest {
     @Test
     public void playSong()  {
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        login("grigore.crepciuc@testpro.io", "te$t$tudent22");
         pressOnPlayBtn();
         WebElement pauseBtn = driver.findElement(By.cssSelector("[class='pause']"));
         Assert.assertTrue(pauseBtn.isDisplayed());

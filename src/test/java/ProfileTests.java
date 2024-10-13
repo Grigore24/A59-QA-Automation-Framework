@@ -8,7 +8,7 @@ public class ProfileTests extends BaseTest {
     @Test(groups = "ProfileTests")
     public void changeProfileName() throws InterruptedException {
         String name = generateRandomName();
-        login("grigore.crepciuc@testpro.io","te$t$tudent");
+        login("grigore.crepciuc@testpro.io","te$t$tudent22");
         Thread.sleep(1000);
         // open profile
         clickOnAvatarIcon();
@@ -52,7 +52,7 @@ public class ProfileTests extends BaseTest {
         WebElement currentPasswordInput = driver.findElement(By.id("inputProfileCurrentPassword"));
         currentPasswordInput.click();
         currentPasswordInput.clear();
-        currentPasswordInput.sendKeys("te$t$tudent");
+        currentPasswordInput.sendKeys("te$t$tudent22");
     }
 
     private void clickOnAvatarIcon() {
