@@ -10,11 +10,11 @@ import java.util.List;
 public class Homework17 extends BaseTest {
 
     @Test
-    public void addSongToPlaylist() {
+    public void addSongToPlaylist()  {
         String text = "Dark Days";
         String playlistName = generateRandomPlaylistName();
         // login
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        login("grigore.crepciuc@testpro.io", "te$t$tudent22");
         // search for song
         findInput(text);
         // click results view all button
