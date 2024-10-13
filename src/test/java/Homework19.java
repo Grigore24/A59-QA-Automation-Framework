@@ -9,7 +9,7 @@ public class Homework19 extends BaseTest {
     @Test
     public void deletePlaylist() {
 //      Added ChromeOptions argument below to fix websocket error
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        login("grigore.crepciuc@testpro.io", "te$t$tudent22");
         clickPlaylist();
         deleteSelectedPlaylist();
         waitCommand();

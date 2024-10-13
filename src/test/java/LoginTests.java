@@ -28,7 +28,7 @@ public class LoginTests extends BaseTest {
         //Steps
 //Step 1: Open Browser
         provideEmail("grigore.crepciuc@testpro.io");
-        providePassword("te$t$tudent");
+        providePassword("te$t$tudent22");
         clickLoginBtn();
         Thread.sleep(3000);
         // Expected result vs Actual
@@ -41,7 +41,7 @@ public class LoginTests extends BaseTest {
         //Steps
 //Step 1: Open Browser
         provideEmail("invalidgrigore.crepciuc@testpro.io");
-        providePassword("te$t$tudent");
+        providePassword("te$t$tudent22");
         clickLoginBtn();
         Thread.sleep(3000);
 //Step 5: Expected result vs Actual
